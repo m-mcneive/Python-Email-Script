@@ -20,7 +20,7 @@ def parse_amazon(url, user_price):
 
 
 def send_email(price):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server = smtplib.SMTP('smtp.gmail.com', 587) 
     server.ehlo()
     server.starttls()
     server.ehlo()
