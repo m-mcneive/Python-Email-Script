@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import smtplib
 
 def parse_amazon(url, user_price):
     headers = {
@@ -18,8 +19,18 @@ def parse_amazon(url, user_price):
 
 
 def send_email():
-    pass
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
 
+    server.login('matt.mcneive@gmail.com', 'fuczqthhokialmwl')
+    subject = 'Price Drop'
+    body = 'Amazon price fell    https://www.amazon.com/dp/B01G6IOEF6/ref=twister_B07GR6XHJ8?_encoding=UTF8&psc=1'
+    msg = f"Subject: {subject}\n\n{body}"
+    server.sendmail('matt.mcneive@gmail.com', 'mmcneive@luc.edu', msg)
+    print('Email Sent')
+    server.quit()
 
 
 parse_amazon('https://www.amazon.com/dp/B01G6IOEF6/ref=twister_B07GR6XHJ8?_encoding=UTF8&psc=1', 25)
